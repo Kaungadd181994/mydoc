@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  height: 100vh;
+}
+
+#container {
+  display: flex;
+  flex: 1;
+}
+
+#sidebar {
+  width: 260px;
+  background: #222;
+  color: #eee;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+#sidebar h2 {
+  margin-top: 0;
+}
+
+#search {
+  width: 100%;
+  padding: 5px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: none;
+}
+
+#sidebar-nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#sidebar-nav li.group {
+  cursor: pointer;
+  margin: 6px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#sidebar-nav li.group::before {
+  content: "▸";
+  font-size: 0.8em;
+}
+
+#sidebar-nav li.group.expanded::before {
+  content: "▾";
+}
+
+#sidebar-nav ul.subpages {
+  margin-left: 15px;
+  display: none;
+}
+
+#sidebar-nav ul.subpages.show {
+  display: block;
+}
+
+#sidebar-nav a {
+  color: #bbb;
+  text-decoration: none;
+}
+
+#sidebar-nav a.active {
+  font-weight: bold;
+  color: #00b894;
+  text-decoration: underline;
+}
+
+#content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+#footer-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#footer-nav button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #00b894;
+  color: white;
+  cursor: pointer;
+}
