@@ -1,29 +1,20 @@
-{
-  "1Into": {
-    "label": "Into",
+[
+  {
+    "label": "Introduction",
     "pages": [
-      {
-        "file": "1Content.md",
-        "label": "Content"
-      }
+      { "label": "Welcome", "path": "pages/welcome.md" }
     ]
   },
-  "2Body": {
-    "label": "Body",
+  {
+    "label": "Getting Started",
     "pages": [
-      {
-        "file": "1scope.md",
-        "label": "Scope"
-      }
+      { "label": "Setup", "path": "pages/setup.md" }
     ]
   },
-  "3Soeci": {
-    "label": "Soeci",
+  {
+    "label": "Usage",
     "pages": [
-      {
-        "file": "1speci.md",
-        "label": "Speci"
-      }
+      { "label": "Example", "path": "pages/example.md" }
     ]
   }
-}
+]

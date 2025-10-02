@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Docs</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">📘 MyDocs</div>
+      <nav id="sidebar-nav"></nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <div id="page-title"></div>
+      <article id="page-content"></article>
+      <footer class="footer-nav">
+        <button id="prev-btn" disabled>⬅ Previous</button>
+        <button id="next-btn" disabled>Next ➡</button>
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
