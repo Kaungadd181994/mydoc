@@ -7,7 +7,7 @@ on:
       - "generate-pages.js"
 
 permissions:
-  contents: write   # ✅ allow push
+  contents: write   # ✅ allow commit & push
 
 jobs:
   build:
@@ -23,17 +23,20 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Generate pages.json
-        run: |
-          npm install
-          npm run generate
+      - name: Install dependencies
+        run: npm install
 
-      - name: Commit changes
+      - name: Generate pages.json
+        run: npm run generate
+
+      - name: Configure GitHub credentials
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Commit & Force Push
+        run: |
           git add pages.json
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update pages.json"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push origin main --force
