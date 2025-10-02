@@ -1,0 +1,29 @@
+{
+  "1Into": {
+    "label": "Into",
+    "pages": [
+      {
+        "file": "1Content.md",
+        "label": "Content"
+      }
+    ]
+  },
+  "2Body": {
+    "label": "Body",
+    "pages": [
+      {
+        "file": "1scope.md",
+        "label": "Scope"
+      }
+    ]
+  },
+  "3Soeci": {
+    "label": "Soeci",
+    "pages": [
+      {
+        "file": "1speci.md",
+        "label": "Speci"
+      }
+    ]
+  }
+}
