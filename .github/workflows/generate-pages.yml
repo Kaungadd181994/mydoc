@@ -1,1 +1,33 @@
 
+name: Generate Pages JSON
+
+on:
+  push:
+    paths:
+      - "pages/**.md"
+      - "generate-pages.js"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Generate pages.json
+        run: |
+          npm install
+          npm run generate
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add pages.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update pages.json"
+          git push
