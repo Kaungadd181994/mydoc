@@ -1,18 +1,42 @@
-- name: Checkout repo
-  uses: actions/checkout@v4
-  with:
-    fetch-depth: 0  # get full commit history so rebase works
+name: Generate Pages JSON
 
-- name: Configure Git
-  run: |
-    git config --global user.name "github-actions"
-    git config --global user.email "github-actions@github.com"
+on:
+  push:
+    paths:
+      - "pages/**.md"
+      - "generate-pages.js"
 
-- name: Commit and Push changes
-  run: |
-    git fetch origin main
-    git checkout main
-    git pull --rebase origin main || true  # rebase to avoid conflicts, ignore if nothing to pull
-    git add pages.json
-    git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update pages.json"
-    git push origin main
+permissions:
+  contents: write   # ✅ required for push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate pages.json
+        run: npm run generate
+
+      - name: Configure GitHub credentials
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+      - name: Commit & Force Push
+        run: |
+          git add pages.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update pages.json"
+          git push origin main --force   # ✅ FORCE push
