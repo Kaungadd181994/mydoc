@@ -1,0 +1,9 @@
+This is mega conetn
+{
+  "name": "docs-site",
+  "version": "1.0.0",
+  "scripts": {
+    "generate": "node generate-pages.js"
+  },
+  "dependencies": {}
+}
